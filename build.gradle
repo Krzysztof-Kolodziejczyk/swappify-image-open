@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // external projects
+    compileOnly 'com.example:swappify-auth-connector:0.0.1-SNAPSHOT'
+    compileOnly 'com.example:swappify-front-api:0.0.1-SNAPSHOT'
+
+    // web tools
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // dev tools
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // multipart
+    implementation group: 'io.projectreactor', name: 'reactor-core', version: '3.4.16'
+    //compileOnly group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+
+    // aws
+    compileOnly group: 'software.amazon.awssdk', name: 's3', version: '2.19.30'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation group: 'software.amazon.awssdk', name: 'apache-client', version: '2.19.30'
+
+    //Feign
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:3.1.2"
+    implementation "org.springframework.cloud:spring-cloud-openfeign-core:3.1.2"
+}
