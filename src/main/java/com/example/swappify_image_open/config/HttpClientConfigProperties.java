@@ -1,7 +1,6 @@
 package com.example.swappify_image_open.config;
 
 import lombok.Data;
-import lombok.Value;
 
 @Data
 public class HttpClientConfigProperties {

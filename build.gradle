@@ -44,6 +44,6 @@ dependencies {
     implementation group: 'software.amazon.awssdk', name: 'apache-client', version: '2.19.30'
 
     //Feign
-    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:3.1.2"
-    implementation "org.springframework.cloud:spring-cloud-openfeign-core:3.1.2"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1"
+    implementation "org.springframework.cloud:spring-cloud-openfeign-core:4.0.1"
 }

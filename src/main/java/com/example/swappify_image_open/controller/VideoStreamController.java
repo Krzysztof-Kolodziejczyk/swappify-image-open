@@ -1,5 +1,6 @@
 package com.example.swappify_image_open.controller;
 
+import com.example.swappify_image_open.annotations.AllowFullyAuthorizedUser;
 import com.example.swappify_image_open.service.ImageService;
 import com.example.swappify_image_open.utils.Headers;
 import lombok.NonNull;
@@ -18,6 +19,7 @@ public class VideoStreamController {
 
     @RequestMapping(value = "/fileupload", method = RequestMethod.POST)
     @ResponseBody
+    @AllowFullyAuthorizedUser
     public ResponseEntity<Void> singleFileUpload(@RequestPart("file") MultipartFile file,
                                                  @RequestHeader(name = Headers.AUTHORIZATION)
                                                  @NonNull final String authToken

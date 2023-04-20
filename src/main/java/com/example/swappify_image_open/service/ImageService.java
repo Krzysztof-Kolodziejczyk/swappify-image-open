@@ -24,19 +24,12 @@ public class ImageService {
 
     private final AwsBasicCredentials credentials;
 
-    private final AuthConnector authConnector;
-
     private S3Client getClient() {
         return S3Client.builder().credentialsProvider(StaticCredentialsProvider.create(credentials))
                 .region(Region.EU_CENTRAL_1).httpClient(ApacheHttpClient.create()).build();
     }
 
     public void uploadImage(MultipartFile file, String authToken) {
-        try {
-            authConnector.checkAuthStatus(authToken);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         try {
             byte[] bytes = file.getBytes();
             String name = file.getOriginalFilename();
