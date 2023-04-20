@@ -1,8 +1,10 @@
 package com.example.swappify_image_open.controller;
 
 import com.example.swappify_image_open.annotations.AllowFullyAuthorizedUser;
+import com.example.swappify_image_open.exceptions.ConstraintViolationException;
 import com.example.swappify_image_open.service.ImageService;
 import com.example.swappify_image_open.utils.Headers;
+import feign.FeignException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,5 +28,10 @@ public class VideoStreamController {
     ) {
         service.uploadImage(file, authToken);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ExceptionHandler({ FeignException.class})
+    public ResponseEntity<?> handleException() {
+        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
     }
 }
