@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @Aspect
@@ -19,10 +20,11 @@ public class AllowFullyAuthorizedUserAspect {
 
     @Before("@annotation(AllowFullyAuthorizedUser)")
     public void checkAuth(JoinPoint joinPoint) {
-        var token = joinPoint.getArgs()[1];
-        var executor = new CommandExecutor<String>();
-        Optional.ofNullable(token)
+        var token = Arrays.stream(joinPoint.getArgs())
                 .map(Object::toString)
-                .ifPresent(it -> executor.execute(it, authConnector::checkAuthStatus));
+                .filter(it -> it.contains("Bearer"))
+                .findFirst();
+        var executor = new CommandExecutor<String>();
+        token.ifPresent(it -> executor.execute(it, authConnector::checkAuthStatus));
     }
 }

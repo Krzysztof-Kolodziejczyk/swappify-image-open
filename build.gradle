@@ -21,9 +21,9 @@ repositories {
 
 dependencies {
     // external projects
-    compileOnly 'com.example:swappify-auth-connector:0.0.2-SNAPSHOT'
-    compileOnly 'com.example:swappify-front-api:0.0.2-SNAPSHOT'
-    compileOnly 'com.example:swappify-api-model:0.0.2-SNAPSHOT'
+    compileOnly 'com.example:swappify-auth-connector:0.0.3-SNAPSHOT'
+    compileOnly 'com.example:swappify-front-api:0.0.3-SNAPSHOT'
+    compileOnly 'com.example:swappify-api-model:0.0.3-SNAPSHOT'
 
     // web tools
     implementation 'org.springframework.boot:spring-boot-starter-web'
